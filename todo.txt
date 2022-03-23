@@ -1,0 +1,38 @@
+Avoid colliding with walls
+Avoid colliding with yourself
+Avoid colliding with other snakes
+Try to move towards food
+
+Decide how you want your Battlesnake to move in a specific situation
+Program your Move Command accordingly
+Deploy your changes to your web server
+Create new games and test your new behavior
+Repeat until undefeated
+
+
+The /move command in the API is where your Battlesnake decides which direction it is going to move. This can be found in the following places for each of the Official Starter Projects:
+
+Python Starter Project - handle_move() function inside of server.py
+
+handle_move() calls choose_move() located in server_logic.py
+
+choose_move depends on a set of helper functions to determine possible moves and then chooses a random one
+
+https://docs.battlesnake.com/references/api#post-move
+
+
+----------------------------------------------------------------
+Revise this function
+
+def avoid_snakes(snakes,mySnakeLength, possible_moves):
+    remove = []
+
+    for snake in snakes:
+        for direction, location in possible_moves.items():
+            if location in snake["body"] and snake["length"]>=mySnakeLength:
+                remove.append(direction)
+    remove = set(remove)
+    for direction in remove:
+        del possible_moves[direction]
+      
+    return possible_moves 
